@@ -89,7 +89,7 @@ public class Main {
 
         // Display a prompt so the user knows what to expect
         System.out.println("This is a program to test your knowledge of United States Capitals. \n");
-        System.out.println("First, you will be shown a list of tates and their \ncorresponding capitals to refresh your memory. \n");
+        System.out.println("First, you will be shown a list of states and their \ncorresponding capitals to refresh your memory. \n");
         System.out.println("To continue, press ENTER.");
 
         // Accept an input
@@ -97,6 +97,7 @@ public class Main {
 
         Boolean enterNotPressed = true;
 
+        // Halt program to wait for user response.
         while (enterNotPressed == true){
             if (readString.isEmpty()){
                 enterNotPressed = false;

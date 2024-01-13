@@ -30,35 +30,6 @@ Montpelier, Richmond, Olympia, Charleston, Madison, Cheyenne */
 import java.util.*; // Import Scanner class for input 
 
 public class Main {
-    // bubbleSort method
-    static void bubbleSort(String statesCapitals[][]){
-        // Variables to hold the first letters of each capital
-        char cOneFirst;
-        char cTwoFirst;
-
-        for (int l = 0; l < 49; l++){
-            for (int m = 0; m < (49 - l); m++){
-                cOneFirst = statesCapitals[1][m].charAt(0);
-                cTwoFirst = statesCapitals[1][m+1].charAt(0);
-                if (Character.compare(cOneFirst, cTwoFirst) > 0){
-                    // If the next capital is alphabetically greater
-                    // store the corresponding capital and state 
-                    // temporarily in associated variables
-                    String tempCapital = statesCapitals[1][m];
-                    String tempState = statesCapitals[0][m];
-                    
-                    // Switch capital and state to previous position
-                    statesCapitals[1][m] = statesCapitals[1][m+1];
-                    statesCapitals[0][m] = statesCapitals[0][m+1];
-
-                    // Move the other capital and state to the next position
-                    statesCapitals[1][m+1] = tempCapital;
-                    statesCapitals[0][m+1] = tempState;    
-                }
-            }
-        }
-    }// End bubbleSort
-
     public static void main(String[] args){
         // Initialize scanner for accepting command line input.
         Scanner scanner = new Scanner(System.in);
@@ -88,8 +59,7 @@ public class Main {
         };
 
         // Display a prompt so the user knows what to expect
-        System.out.println("This is a program to test your knowledge of United States Capitals. \n");
-        System.out.println("First, you will be shown a list of tates and their \ncorresponding capitals to refresh your memory. \n");
+        System.out.println("This is a program to test your knowledge of United States Capitals. \n");        
         System.out.println("To continue, press ENTER.");
 
         // Accept an input
@@ -97,19 +67,25 @@ public class Main {
 
         Boolean enterNotPressed = true;
 
+        // Halt program to wait for user response
         while (enterNotPressed == true){
             if (readString.isEmpty()){
                 enterNotPressed = false;
             }
         }
 
-        // Display the array for the user ie. each pair of State and Capital's
-        for (int i = 0; i < 50; i++){
-            System.out.println("State: " + stateCapitalArray[0][i].toString() + ", Capital: " + stateCapitalArray[1][i].toString());
+        // Create and fill the HashMap using the stateCapitalArray
+        HashMap<String, String> stateCapitalsHashMap = new HashMap<String, String>();
+        for (i = 0; i < 50; i++){
+            stateCapitals.put(stateCapitalArray[0][i], stateCapitalArray[1][i]);
         }
 
-        // Sort the array by capitals.
-        bubbleSort(stateCapitalArray);
+        // Create and fill the TreeMap using the stateCapitalHashMap
+        TreeMap<String, String> stateCapitalsTreeMap = new TreeMap<String, String>(stateCapitalsHashMap);
+
+        // Use the TreeMap stateCapitalsTreeMap to fille a binary search tree after we use the TreeMap class to sort it
+        // This will require writing a binary search tree class of my own.  I think thats what they are looking for.
+
 
         Boolean notCycled = true;
         int stateCount = 0;
