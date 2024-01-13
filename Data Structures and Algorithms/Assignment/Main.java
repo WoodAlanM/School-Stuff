@@ -85,7 +85,7 @@ public class Main {
             "Pierre","Nashville","Austin","Salt Lake City","Montpelier",
             "Richmond","Olympia","Charleston","Madison","Cheyenne"}
         };
-        // Im showing brody something
+
         // Display a prompt so the user knows what to expect
         System.out.println("This is a program to test your knowledge of United States Capitals. \n");
         System.out.println("First, you will be shown a list of tates and their \ncorresponding capitals to refresh your memory. \n");
