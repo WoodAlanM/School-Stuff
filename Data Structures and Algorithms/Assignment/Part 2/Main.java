@@ -1,5 +1,5 @@
 // Alan Wood Assignment for Data Structures and Algorithms
-// Part 1
+// Part 2
 // 1/12/2024
 
 // States:
