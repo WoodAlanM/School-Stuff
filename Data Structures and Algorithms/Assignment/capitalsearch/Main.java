@@ -26,12 +26,10 @@ Montpelier, Richmond, Olympia, Charleston, Madison, Cheyenne */
 // These lists are in order so that each state will align with 
 // its associated capital.
 
-// Part 1:
-
-package capitalearch;
+// Part 2:
+package capitalsearch;
 
 import java.util.*; // Import Scanner class for input 
-import capitalsearch.BST;
 
 public class Main {  
     public static void main(String[] args){
@@ -106,32 +104,33 @@ public class Main {
         
         // Fill the Binary Search Tree using the sorted TreeMap
         for (Map.Entry<String, String> entry : stateCapitalsTreeMap.entrySet()){
-            
+            bst.add(entry.getKey(), entry.getValue());
         }
+        
+        Boolean asking = true;
+        
+        // Display information about next steps
+        System.out.println("Enter a state to see its capital");
+        System.out.println("Enter EXIT to end the program.");
 
-        // Boolean notCycled = true;
-        // int stateCount = 0;
-        // int correctCount = 0;
-
-        // System.out.println("\n\nPress ENTER after each entry to continue.\n\n");
-
-        // // Begin the capital quizzing portion
-        // while (notCycled == true){
-        //     if (stateCount < 50){
-        //         System.out.println(String.format("What is the capital of %s? ", stateCapitalArray[0][stateCount].toString()));
-        //         String inputCapital = scanner.nextLine();
-        //         String currentCapital = stateCapitalArray[1][stateCount].toString();
-        //         if (inputCapital.toLowerCase().compareTo(currentCapital.toLowerCase()) == 0){
-        //             correctCount++;
-        //         }
-        //         stateCount++;
-        //     }else {
-        //         notCycled = false;
-        //     }
-        // }// End While
-
-        // // After the quizzing cycle is completed, display number correct and exit.
-        // System.out.println(String.format("\n\nGreat job!  You got %d correct.\n\n", correctCount));
+        // Begin asking the user to enter states
+        while (asking){
+            System.out.println("Enter a state or EXIT: ");
+            String inputState = scanner.nextLine();
+            if (inputState == "EXIT"){
+                asking = false;
+            } else {
+                String capital = bst.findCapital(inputState);
+                if (capital == null) {
+                    System.out.println("No associated capitals for that state.");
+                } else {
+                    System.out.println("The capital of " + inputState + " is " + capital);
+                }
+            }
+        }
+        
+        // Close the scanner
+        scanner.close();
     }
 };// Main
 
