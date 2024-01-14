@@ -27,13 +27,17 @@ Montpelier, Richmond, Olympia, Charleston, Madison, Cheyenne */
 // its associated capital.
 
 // Part 1:
+
 import java.util.*; // Import Scanner class for input 
 
-public class Main {
+
+public class Main {  
     public static void main(String[] args){
         // Initialize scanner for accepting command line input.
         Scanner scanner = new Scanner(System.in);
         
+        BST bst = new BST();
+
         // Populate States and Capitals array
         String[][] stateCapitalArray = {
             {"Alabama","Alaska","Arizona","Arkansas","California",
@@ -60,6 +64,8 @@ public class Main {
 
         // Display a prompt so the user knows what to expect
         System.out.println("This is a program to test your knowledge of United States Capitals. \n");        
+        System.out.println("First, you will be shown a list of states");
+        System.out.println("and capitals to refresh your memory");
         System.out.println("To continue, press ENTER.");
 
         // Accept an input
@@ -76,40 +82,53 @@ public class Main {
 
         // Create and fill the HashMap using the stateCapitalArray
         HashMap<String, String> stateCapitalsHashMap = new HashMap<String, String>();
-        for (i = 0; i < 50; i++){
-            stateCapitals.put(stateCapitalArray[0][i], stateCapitalArray[1][i]);
+        for (int i = 0; i < 50; i++){
+            stateCapitalsHashMap.put(stateCapitalArray[0][i], stateCapitalArray[1][i]);
         }
 
-        // Create and fill the TreeMap using the stateCapitalHashMap
-        TreeMap<String, String> stateCapitalsTreeMap = new TreeMap<String, String>(stateCapitalsHashMap);
+        // Display HashMap contents to user.
+        for (Map.Entry<String, String> entry : stateCapitalsHashMap.entrySet()){
+            String state = entry.getKey();
+            String capital = entry.getValue();
+            System.out.println("State: " + state + ", Capital: " + capital);
+        }
 
-        // Use the TreeMap stateCapitalsTreeMap to fille a binary search tree after we use the TreeMap class to sort it
-        // This will require writing a binary search tree class of my own.  I think thats what they are looking for.
+        // Create a TreeMap and then fill it using the HashMap from before
+        TreeMap<String, String> stateCapitalsTreeMap = new TreeMap<String, String>();
+        for (Map.Entry<String, String> entry : stateCapitalsHashMap.entrySet()){
+            String state = entry.getKey();
+            String capital = entry.getValue();
+            stateCapitalsTreeMap.put(state, capital);
+        }
+        
+        // Fill the Binary Search Tree using the sorted TreeMap
+        for (Map.Entry<String, String> entry : stateCapitalsTreeMap.entrySet()){
+            
+        }
 
+        // Boolean notCycled = true;
+        // int stateCount = 0;
+        // int correctCount = 0;
 
-        Boolean notCycled = true;
-        int stateCount = 0;
-        int correctCount = 0;
+        // System.out.println("\n\nPress ENTER after each entry to continue.\n\n");
 
-        System.out.println("\n\nPress ENTER after each entry to continue.\n\n");
+        // // Begin the capital quizzing portion
+        // while (notCycled == true){
+        //     if (stateCount < 50){
+        //         System.out.println(String.format("What is the capital of %s? ", stateCapitalArray[0][stateCount].toString()));
+        //         String inputCapital = scanner.nextLine();
+        //         String currentCapital = stateCapitalArray[1][stateCount].toString();
+        //         if (inputCapital.toLowerCase().compareTo(currentCapital.toLowerCase()) == 0){
+        //             correctCount++;
+        //         }
+        //         stateCount++;
+        //     }else {
+        //         notCycled = false;
+        //     }
+        // }// End While
 
-        // Begin the capital quizzing portion
-        while (notCycled == true){
-            if (stateCount < 50){
-                System.out.println(String.format("What is the capital of %s? ", stateCapitalArray[0][stateCount].toString()));
-                String inputCapital = scanner.nextLine();
-                String currentCapital = stateCapitalArray[1][stateCount].toString();
-                if (inputCapital.toLowerCase().compareTo(currentCapital.toLowerCase()) == 0){
-                    correctCount++;
-                }
-                stateCount++;
-            }else {
-                notCycled = false;
-            }
-        }// End While
-
-        // After the quizzing cycle is completed, display number correct and exit.
-        System.out.println(String.format("\n\nGreat job!  You got %d correct.\n\n", correctCount));
+        // // After the quizzing cycle is completed, display number correct and exit.
+        // System.out.println(String.format("\n\nGreat job!  You got %d correct.\n\n", correctCount));
     }
 };// Main
 
