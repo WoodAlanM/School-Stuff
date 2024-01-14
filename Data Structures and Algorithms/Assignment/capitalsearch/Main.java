@@ -28,14 +28,17 @@ Montpelier, Richmond, Olympia, Charleston, Madison, Cheyenne */
 
 // Part 1:
 
-import java.util.*; // Import Scanner class for input 
+package capitalearch;
 
+import java.util.*; // Import Scanner class for input 
+import capitalsearch.BST;
 
 public class Main {  
     public static void main(String[] args){
         // Initialize scanner for accepting command line input.
         Scanner scanner = new Scanner(System.in);
         
+        // Instantiate BST class for Binary Search Tree operations
         BST bst = new BST();
 
         // Populate States and Capitals array

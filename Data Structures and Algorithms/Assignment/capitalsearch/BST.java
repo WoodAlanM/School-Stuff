@@ -1,3 +1,5 @@
+package capitalsearch;
+
 public class BST {
     class Node{
         String state;
