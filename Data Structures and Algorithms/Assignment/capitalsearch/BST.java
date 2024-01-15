@@ -1,46 +1,43 @@
 package capitalsearch;
 
-class Node{
-    String state;
-    String capital;
-    Node leftChild;
-    Node rightChild;
-
-    Node(String state, String capital){
-        this.state = state;
-        this.capital = capital;
-        leftChild = null;
-        rightChild = null;
-    }
-}
-
 public class BST {
+    class Node{
+        String state;
+        String capital;
+        Node leftChild;
+        Node rightChild;
+    
+        Node(String state, String capital){
+            this.state = state;
+            this.capital = capital;
+            leftChild = null;
+            rightChild = null;
+        }
+    }
+
     // Initialize a root node
-    private Node root;
+    Node root;
 
     public BST(){
         this.root = null;
     }
 
     // This method recursively adds nodes to the BST
-    private Node addNode(Node root, String state, String capital){
+    private Node addNode(Node node, String state, String capital){
         // If there are no nodes, create one
-        if (root == null){
-            System.out.println("Root node created using state: " + state + "and capital: ");
-            return new Node(state, capital);
+        if (node == null){          
+            node = new Node(state, capital);
+            return node;
         }
 
         // Otherwise check the previous node against the
         // next one to determine its placement
-        if (state.compareTo(root.state) < 0){
-            
-            root.leftChild = addNode(root.leftChild, state, capital);
-        } else if (state.compareTo(root.state) > 0){
-            root.leftChild = addNode(root.leftChild, state, capital);
-        } else {
-            return root;
+        if (state.compareTo(node.state) < 0){
+            node.leftChild = addNode(node.leftChild, state, capital);
+        } else if (state.compareTo(node.state) > 0){
+            node.rightChild = addNode(node.rightChild, state, capital);
         }
-        return root;
+        return node;
     }
 
     public void add(String state, String capital){
@@ -49,23 +46,29 @@ public class BST {
 
     // This method recursively searches the BST to find and
     // return the node with the entered state value
-    private String findCapitalRecursive(Node root, String state){
-        System.out.println("Got to findCapitalRecursive");
-        if (state.compareTo(root.state) < 0){
-            System.out.println("Got to left recursive checker.");            
-            return findCapitalRecursive(root.leftChild, state);
-        }else if (state.compareTo(root.state) > 0){
-            System.out.println("Got to right recursive checker.");
-            return findCapitalRecursive(root.rightChild, state);
+    private String findCapitalRecursive(Node node, String state){
+        if (node == null){
+            return null;
+        }
+        if (state.compareTo(node.state) < 0){         
+            return findCapitalRecursive(node.leftChild, state);
+        }else if (state.compareTo(node.state) > 0){
+            return findCapitalRecursive(node.rightChild, state);
         }else {
-            return root.capital;
+            return node.capital;
         }
     }
 
     // Use this method to get the capital associated with the entered state
     public String findCapital(String state){
-        System.out.println("Got to findCapital");
         String capital = findCapitalRecursive(root, state);
-        return capital;
+        String response;
+        if (capital != null){
+            response = "The capital of " + state + " is: " + capital;
+            return response;
+        } else {
+            response = "State not found.";
+            return response;
+        }
     }
 }

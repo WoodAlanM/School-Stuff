@@ -117,15 +117,11 @@ public class Main {
         while (asking){
             System.out.println("Enter a state or EXIT: ");
             String inputState = scanner.nextLine();
-            if (inputState == "EXIT"){
+            System.out.println(inputState);
+            if (inputState.compareTo("EXIT") == 0){
                 asking = false;
             } else {
-                String capital = bst.findCapital(inputState);
-                if (capital == null) {
-                    System.out.println("No associated capitals for that state.");
-                } else {
-                    System.out.println("The capital of " + inputState + " is " + capital);
-                }
+                System.out.println(bst.findCapital(inputState));
             }
         }
         
