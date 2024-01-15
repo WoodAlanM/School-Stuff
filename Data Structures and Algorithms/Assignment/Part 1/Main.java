@@ -135,6 +135,9 @@ public class Main {
 
         // After the quizzing cycle is completed, display number correct and exit.
         System.out.println(String.format("\n\nGreat job!  You got %d correct.\n\n", correctCount));
+
+        // Close scanner
+        scanner.close();
     }
 };// Main
 
